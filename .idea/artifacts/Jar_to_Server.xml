@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="Jar to Server">
+    <output-path>$USER_HOME$/AppData/Roaming/.feather/player-server/servers/12140899-385d-4b9f-b137-43da237714fa/plugins</output-path>
+    <root id="root">
+      <element id="archive" name="slscore.main.jar">
+        <element id="module-output" name="slscore.main" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

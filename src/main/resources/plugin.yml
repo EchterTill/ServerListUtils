@@ -1,0 +1,23 @@
+name: ServerListUtils
+version: '${version}'
+main: de.tilldv.slutils.Main
+api-version: 1.19
+authors: [TillDV]
+
+commands:
+  registerlocation:
+    description: Einstellen, wann ein Spieler registriert wird.
+    usage: /registerlocation <never/join/login>
+    permission: de.tilldv.slutils.manage
+  pingaccess:
+    description: Einstellen, wer den Server pingen kann.
+    usage: /pingaccess <open/known/whitelist/blacklist/closed>
+    permission: de.tilldv.slutils.manage
+  loginaccess:
+    description: Einstellen, wer sich einloggen kann.
+    usage: /pingaccess <open/known/whitelist/closed>
+    permission: de.tilldv.slutils.manage
+  overrideconfig:
+    description: Gefahr
+    usage: /overrideconfig <confirm>
+    permission: de.tilldv.slutils.manage
