@@ -9,11 +9,9 @@ import org.jetbrains.annotations.NotNull;
 public class OverrideConfig implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length > 0) {
-            if (args[0].equalsIgnoreCase("confirm")) {
-                DataManager.generateConfig("confirm");
-            }
-        }
-        return false;
+        if (args.length > 0) return false;
+        DataManager.generateConfig("confirm");
+
+        return true;
     }
 }

@@ -2,14 +2,14 @@ package de.tilldv.slutils.listeners;
 
 import com.destroystokyo.paper.event.server.PaperServerListPingEvent;
 import de.tilldv.slutils.data.DataStorage;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 
 import org.bukkit.Statistic;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.jetbrains.annotations.NotNull;
 
-public class PingListener implements @NotNull Listener {
+public class PingListener implements Listener {
     @EventHandler
     public void onServerListPing(PaperServerListPingEvent event) {
         String address = event.getAddress().toString().substring(1);
@@ -25,12 +25,10 @@ public class PingListener implements @NotNull Listener {
 
         switch (DataStorage.pingAccess) {
             case OPEN -> {
-                if (name != null) {
-                    motd(event, name);
-                }
+                if (name != null) motd(event, name);
             }
             case KNOWN -> {
-                if (name != null){
+                if (name == null) {
                     motd(event, name);
                 } else event.setCancelled(true);
             }
@@ -44,9 +42,7 @@ public class PingListener implements @NotNull Listener {
                     motd(event, name);
                 } else event.setCancelled(true);
             }
-            case CLOSED -> {
-                event.setCancelled(true);
-            }
+            case CLOSED -> event.setCancelled(true);
         }
     }
     private void motd(PaperServerListPingEvent event, String name) {
@@ -61,7 +57,7 @@ public class PingListener implements @NotNull Listener {
                 "Du hast schon " + Bukkit.getOfflinePlayer(name).getStatistic(Statistic.PLAYER_KILLS) + " Spieler umgebracht."
         };
 
-        event.setMotd(line1[(int) (Math.random() * line1.length)] + "\n" + line2[(int) (Math.random() * line2.length)]);
+        event.motd(Component.text(line1[(int) (Math.random() * line1.length)] + "\n" + line2[(int) (Math.random() * line2.length)]));
 
     }
 

@@ -12,18 +12,14 @@ public class DataManager {
     }
 
     public static void generateConfig(String confirmation) {
-        if (confirmation.equalsIgnoreCase("confirm")){
-            Main.getInstance().getConfig().set("registerlocation", DataTypes.ExecuteLocation.LOGIN.toString());
-            Main.getInstance().getConfig().set("pingaccess", DataTypes.AccessMode.KNOWN.toString());
-            Main.getInstance().getConfig().set("loginaccess", DataTypes.AccessMode.KNOWN.toString());
+        if (!confirmation.equalsIgnoreCase("confirm")) return;
+        initData();
+        Main.getInstance().getConfig().set("registerlocation", DataTypes.ExecuteLocation.LOGIN.toString());
+        Main.getInstance().getConfig().set("pingaccess", DataTypes.AccessMode.KNOWN.toString());
+        Main.getInstance().getConfig().set("loginaccess", DataTypes.AccessMode.KNOWN.toString());
+        Main.getInstance().saveConfig();
 
-            if (DataTypes.AccessMode.KNOWN == DataTypes.AccessMode.valueOf("KNOWN")) {
-                Bukkit.getLogger().info("Es lebt");
-            }
 
-            Main.getInstance().saveConfig();
-
-        }
     }
 
     public static void loadConfig() {
@@ -34,9 +30,10 @@ public class DataManager {
             DataStorage.registerLocation = DataTypes.ExecuteLocation.valueOf(Main.getInstance().getConfig().getString("registerlocation"));
             DataStorage.pingAccess = DataTypes.AccessMode.valueOf(Main.getInstance().getConfig().getString("pingaccess"));
             DataStorage.loginAccess = DataTypes.AccessMode.valueOf(Main.getInstance().getConfig().getString("loginaccess"));
-            Bukkit.getLogger().info("Config geladen");
+            Bukkit.getLogger().info("Config geladen.");
 
         } catch (Exception e) {
+            Bukkit.getLogger().warning("Ein Fehler ist aufgetreten");
             throw e;
         }
     }
